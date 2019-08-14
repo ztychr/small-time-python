@@ -2,7 +2,7 @@
 
 import sys, getopt
 
-encoding =   {'a' : "9aLxO",
+encoding = {'a' : "9aLxO",
             'b' : "StaOL",
             'c' : "piHW8",
             'd' : "4QXBv",
@@ -62,7 +62,7 @@ encoding =   {'a' : "9aLxO",
             'Å' : "Qg1N2",
             ' ' : "i0DQd"}
 
-decoding =   {'9aLxO' : "a",
+decoding = {'9aLxO' : "a",
             'StaOL' : "b",
             'piHW8' : "c",
             '4QXBv' : "d",
@@ -123,7 +123,7 @@ decoding =   {'9aLxO' : "a",
             'i0DQd' : " "}
 
 help = '''
-    encoder.py [option] <string> ... [-e] <string> | [-d] <string
+    python3 encoder.py [option] <string> ... [-e] <string> | [-d] <string
     to encode string with spaces, wrap string in quotes
     
     -e --encode | encode string
