@@ -124,7 +124,7 @@ decoding = {'9aLxO' : "a",
 
 help = '''
     python3 encoder.py [option] <string> ... [-e] <string> | [-d] <string
-    to encode string with spaces, wrap string in quotes
+    wrap in quotes to encode strings with spaces
     
     -e --encode | encode string
     -d --decode | decode string
@@ -134,7 +134,7 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv,"he:d:",["ifile=","ofile="])
     except getopt.GetoptError:
-        print ('encoder.py [option] <string> ... [-e] <string> | [-d] <string>')
+        print (help)
         sys.exit(2)
 
     for opt, arg in opts:
