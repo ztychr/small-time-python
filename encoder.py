@@ -124,7 +124,8 @@ decoding =   {'9aLxO' : "a",
 
 help = '''
     encoder.py [option] <string> ... [-e] <string> | [-d] <string
-
+    to encode string with spaces, wrap string in quotes
+    
     -e --encode | encode string
     -d --decode | decode string
         '''
