@@ -125,9 +125,9 @@ decoding = {'9aLxO' : "a",
 help = '''
     python3 encoder.py [option] <string> ... [-e] <string> | [-d] <string
     wrap in quotes to encode strings with spaces
-    
-    -e --encode | encode string
-    -d --decode | decode string
+
+    -e, --encode <string>   encode string
+    -d, --decode <string>   decode string
         '''
 
 def main(argv):
@@ -146,22 +146,28 @@ def main(argv):
             encode = arg
             encode_phrase = []
 
-            for i in list(encode):
-                p = encoding[i]
-                encode_phrase.append(p)
+            try:
+                for i in list(encode):
+                    p = encoding[i]
+                    encode_phrase.append(p)
+                print('\n' + 'Encoded string: ' + ''.join(encode_phrase) + '\n')
+            except:
+                print('\n Invalid string, please try again. \n')
 
-            print('\n' + 'Encoded string: ' + ''.join(encode_phrase) + '\n')
 
         elif opt in ("-d", "--decode"):
             decode = arg
             decode_phrase = []
-            r = [decode[i:i+5] for i in range(0, len(decode), 5)]
 
-            for i in r:
-                p = decoding[i]
-                decode_phrase.append(p)
+            try:
+                r = [decode[i:i+5] for i in range(0, len(decode), 5)]
+                for i in r:
+                    p = decoding[i]
+                    decode_phrase.append(p)
+                print('\n' + 'Decoded string: ' + ''.join(decode_phrase) + '\n')
+            except:
+                print('\n Invalid string, please try again. \n')
 
-            print('\n' + 'Decoded string: ' + ''.join(decode_phrase) + '\n')
 
 if __name__ == "__main__":
    main(sys.argv[1:])
@@ -179,9 +185,10 @@ def encode():
 
     print('\n')
     print('Encoded string: ' + ''.join(encode_phrase))
-def decode():
-    decode = input("\nEnter string to decode: ")
 
+def decode():
+
+    decode = input("\nEnter string to decode: ")
     decode_phrase = []
 
     r = [decode[i:i+5] for i in range(0, len(decode), 5)]
