@@ -43,7 +43,7 @@ while True:
                     big = n[1]
                     start = n[0]
 
-        res = ( start,big)
+        res = (start,big)
     # list.index([start,big])
         return big, res
 
@@ -51,7 +51,16 @@ while True:
     S = []
     t = target[0]
     while t < target[1]:
-        get, i  = getmax(intervalstmp, t)
-        S.append(i)
-        t = get
-    print len(S)
+
+        try:
+            get, i  = getmax(intervalstmp, t)
+            S.append(i)
+            t = get
+            
+        except StandardError as e:
+            break
+
+    if len(S) == 0:
+        print "-1"
+    else: 
+        print len(S)
