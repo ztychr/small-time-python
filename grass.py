@@ -1,52 +1,57 @@
-import math
-import sys
-import fileinput
+while True:
+        
+    import math
 
-lists = []
-sets = []
+    n = raw_input().split()
 
-sprinklers = 0
-length = 0
-width = 0
+    sets = []
+    intervalstmp = []
 
-def getB(a, c):
-	b = math.sqrt(c*c-a*a)
-	return b
+    sprinks = int(n[0])
+    target  = [0, int(n[1])]
+    width  = int(n[2])
 
-def getC(a, b):
-	rt = a*a+b*b
-	c = math.sqrt(rt)
-	return c
+    def getB(a, c):
+        b = math.sqrt(c*c-a*a)
+        return b
 
-for line in fileinput.input():
-	stream = line.split()
+    for i in range(0, int(sprinks)):
+        num = raw_input().split()
+        n1 = int(num[0])
+        n2 = int(num[1])
 
-	if  int(sprinklers) > 2 and int(len(lists)) == int(sprinklers):
-		print "SET: \n", sets, "\n"*3
-		lists = []
-		sets = []
-		sprinklers = 0
-		length = 0
-		width = 0
+        sets.append([n1, n2])
 
-	if len(stream) == 3:
-		sprinklers = stream[0]
-		length = stream[1]
-		width = stream[2]
+    for i in range(0, len(sets)):
 
-	elif len(stream) == 2:
+        acc = 0
+        sideC = sets[i][1]
+        b = getB(float(width)/float(2), float(sideC))
+        pos = float(sets[i][0])
+        tmplist = [pos-b, pos+b]
+        intervalstmp.append(tmplist)
+        acc+=1
 
-		data = stream[0:2]
-		lists.append(data)
+    #print intervalstmp
 
-		counter = 0
-		sideC = lists[counter][1]
-		b = getB(float(width)/float(2), float(sideC))
-		pos = float(lists[counter][0])
-		tmplist = [pos-b, pos+b]
-		sets.append(tmplist)
-		counter+=1
+    def getmax(liste, t):
+        big = -1
+        for n in liste:
+            index = liste.index(n)
+            if n[0] <= t:
+                if n[1] >= big:
+                    big = n[1]
+                    start = n[0]
 
-print sets
+        res = ( start,big)
+    # list.index([start,big])
+        return big, res
 
-
+    intervalstmp.sort(key= lambda x : x[1])
+    S = []
+    t = target[0]
+    while t < target[1]:
+        get, i  = getmax(intervalstmp, t)
+        S.append(i)
+        t = get
+    print len(S)
