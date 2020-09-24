@@ -1,3 +1,5 @@
+#gunzip -c access.log.*.gz >> ~/visitors.txt
+
 visitors = open('visitors.txt', 'r')
 c = 1
 
