@@ -1,9 +1,16 @@
-#gunzip -c access.log.*.gz >> ~/visitors.txt
+#!/usr/bin/env python
 
-visitors = open('visitors.txt', 'r')
-c = 1
+import sys
 
-for line in visitors:
+if sys.argv[1] == "-h" or "--help":
+    print "usage: gunzip -c <access log.gz> | visitors.py"
+    sys.exit()
+
+input = sys.stdin
+
+c = 0
+
+for line in input:
     fields = line.strip().split()
 
     status_code = fields[8]
@@ -11,8 +18,8 @@ for line in visitors:
 
     if status_code == "200":
         if not ".svg" or ".img" or ".png" or ".css" in requested:
-	    if requested != "*":
-		c+=1
-		#print requested
+            if requested != "*":
+                c+=1
+                #print requested
 
 print c
